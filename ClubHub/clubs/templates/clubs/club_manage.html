@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Clubs {% endblock %}
+
+{% block content %}
+  {% for request in pending_members %}
+  <p>{{request.user}}</p>
+  <a href="{% url 'clubs:approve_member_view' request.id %}">Approve</a>
+  <a href="{% url 'clubs:reject_member_view' request.id %}">Reject</a>
+  {% endfor %}
+  <hr>
+  {% for member in approved_members %}
+  <p>{{member.user}}</p>
+  {% endfor %}
+{% endblock %}

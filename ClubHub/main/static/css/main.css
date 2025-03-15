@@ -1,0 +1,119 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+:root {
+  scroll-behavior: smooth;
+}
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* Small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* Medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* Large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+body {
+  font-family: "Outfit", sans-serif;
+
+}
+a {
+  text-decoration: none;
+}
+/* Base HTML */
+/* Header */
+header {
+
+}
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .container .web-name {
+  height: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .container nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+header .container nav .links {
+  display: flex;
+
+  gap: 10px;
+}  
+header .container nav .links a {
+  height: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}  
+header .container .user {
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* Clubs App */
+.form {
+  /* min-height: calc(100vh - 72px); */
+  margin-top: 60px;
+}
+.form .container {
+  /* transform: translateY(50%); */
+}
+.form .section-header {
+  margin-bottom: 30px;
+}
+.form form  {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+}
+.form form div {
+  
+
+}
+.form form div label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form form div input,
+.form form  input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  outline: none;
+}
+.form form  input[type="submit"] {
+  cursor: pointer;
+}
+.login-form {
+
+}

@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} None {% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="web-name">Club Hub</div>
+        <nav>
+          <div class="links">
+            <a href="{% url 'clubs:clubs_page_view' %}">Clubs</a>
+            {% if user.is_staff %}
+            <a href="{% url 'clubs:club_manage_view' %}">Manage</a>
+            {% endif %}
+            {% if not user.is_authenticated %}
+            <a href="{% url 'users:register_page_view' %}">Register</a>
+            <a href="{% url 'users:login_page_view' %}">Login</a>
+            {% else %}
+            <a href="{% url 'users:logout_view'%}">Logout</a>
+            {% endif %}
+          </div>
+          {% if user.is_authenticated %}
+          <div class="user">
+            <i class="fa-solid fa-circle-user"></i>
+            <div class="name">{{user.username}}</div>
+          </div>
+          {% endif %}
+        </nav>
+      </div>
+    </header>
+    <main>
+      {% if messages %}
+        {% for message in messages %}  
+        <p class="{{message.tags}}">
+          {{message}}
+        </p>
+        {% endfor %}
+      {% endif %}
+      {% block content %}
+      {% endblock %}
+    </main>
+  </body>
+</html>
