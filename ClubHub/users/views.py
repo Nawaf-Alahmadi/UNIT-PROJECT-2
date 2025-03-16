@@ -52,7 +52,7 @@ def manage_users_view(request: HttpRequest):
     # Any users not in user_ids = False
     User.objects.exclude(id__in= user_ids).update(is_staff= False)
     messages.success(request, "Updated successfully", "success")
-  users = User.objects.all()
+  users = User.objects.all().exclude(is_superuser= True)
   return render(request, "users/manage_users.html", {"users" : users})
 
 

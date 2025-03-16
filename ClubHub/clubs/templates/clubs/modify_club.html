@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Clubs {% endblock %}
+
+{% block content %}
+<section class="form modify-form">
+  <div class="container">
+    <h2 class="section-header">Modify Club</h2>
+    <form action="{% url 'clubs:modify_club_view' club_details.id %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div>
+        <label>Name</label>
+        <input type="text" name="name" value="{{club_details.name}}" required>
+      </div>
+      <div>
+        <label>Description</label>
+        <textarea name="description">{{club_details.description}}</textarea>
+      </div>
+      <div>
+        <label>Image</label>
+        <input type="file" name="image" accept="image/*">
+        <img src="{{club_details.image.url}}" alt="">
+      </div>
+      <input type="submit" value="Modify">
+    </form>
+  </div>
+</section>
+{% endblock %}

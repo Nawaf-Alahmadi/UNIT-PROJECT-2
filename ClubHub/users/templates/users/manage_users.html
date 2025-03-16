@@ -3,29 +3,42 @@
 {% block title %} Manage Users {% endblock %}
 
 {% block content %}
-<h2>Manage Users</h2>
-<form method="post" action="{% url 'users:manage_users_view' %}">
-    {% csrf_token %}
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Is Staff</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for user in users %}
-            <tr>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td>
-                    <input type="checkbox" name="user_ids" value="{{ user.id }}" {% if user.is_staff %}checked{% endif %}>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <button type="submit">Update Roles</button>
-</form>
+
+<section class="sec manage-sec table-style">
+    <div class="container">
+        <h2 class="section-header">Manage Users</h2>
+        <div class="table-container">
+            <form method="post" action="{% url 'users:manage_users_view' %}">
+                {% csrf_token %}
+            <table>
+               <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Fisrt Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Is Staff</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.first_name }}</td>
+                    <td>{{ user.last_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <input type="checkbox" name="user_ids" value="{{ user.id }}" {% if user.is_staff %}checked{% endif %}>
+                    </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+            <input type="submit">
+        </form>
+          </div>
+    </div>
+</section>
+
+
 {% endblock %}

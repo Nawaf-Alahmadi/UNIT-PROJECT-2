@@ -120,9 +120,13 @@ header .container .user {
 .login-form {
 
 }
-/* Clubs App -  */
+/* Clubs App*/
+/* All Clubs */
 .sec {
-
+  margin-top: 50px;
+}
+.clubs-sec .section-header {
+  margin-bottom: 50px;
 }
 .clubs-sec .clubs {
   display: grid;
@@ -130,12 +134,70 @@ header .container .user {
   gap: 40px;
 }
 .clubs-sec .clubs .club {
-  background-color: #eee;
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); 
 }
-.clubs-sec .clubs .club {
+.clubs-sec .clubs .club img {
+  width: 100%;
 }
-.clubs-sec .clubs .club img{
-  width: 200px;
+.clubs-sec .clubs .club .info {
+  padding: 30px 0 20px;
+}
+.clubs-sec .clubs .club .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.clubs-sec .clubs .club .buttons a {
+  padding: 5px 10px;
+  background-color: #eee;
+  border-radius: 6px;
+  color: black;
+}
+/* Club details */
+.club-details-sec .all-info .club {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15); 
+
+}
+.club-details-sec .all-info .club .img {
+  text-align: center;
+}
+.club-details-sec .all-info .club img {
+  width: 300px;
+}
+
+.table-style .table-container  {
+  display: flex;
+  align-items: center;
+  overflow: auto;
+}
+.table-style .table-container form {
+  width: 100%;
+
+}
+
+.table-style table {
+  min-width: 700px;
+  width: 100%;
+  border-spacing: 0px;
+}
+.table-style table th ,
+.table-style table td {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  padding: 10px;
+}
+.table-style table tr:last-of-type td {
+  border-bottom: 1px solid black;
+
+}
+.table-style table tr th:last-child,
+.table-style table tr td:last-child {
+  border-right: 1px solid black;
+
 }

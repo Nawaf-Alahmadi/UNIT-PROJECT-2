@@ -3,13 +3,35 @@
 {% block title %} Clubs {% endblock %}
 
 {% block content %}
-  {% for request in pending_members %}
-  <p>{{request.user}}</p>
-  <a href="{% url 'clubs:approve_member_view' request.id %}">Approve</a>
-  <a href="{% url 'clubs:reject_member_view' request.id %}">Reject</a>
-  {% endfor %}
-  <hr>
-  {% for member in approved_members %}
-  <p>{{member.user}}</p>
-  {% endfor %}
+  <section class="sec manage-sec table-style">
+    <div class="container">
+      <h2 class="section-header">Manage</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Requested At</th>
+              <th>Decision</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for request in pending_members %}
+            <tr>
+              <td>{{request.user.first_name}}</td>
+              <td>{{request.user.last_name}}</td>
+              <td>{{request.user.email}}</td>
+              <td>{{request.status}}</td>
+              <td>{{request.joined_at}}</td>
+              <td><a href="{% url 'clubs:approve_member_view' request.id %}">Approve</a> <a href="{% url 'clubs:reject_member_view' request.id %}">Reject</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
 {% endblock %}
