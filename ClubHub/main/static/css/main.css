@@ -78,7 +78,7 @@ header .container .user {
   align-items: center;
   justify-content: center;
 }
-/* Clubs App */
+/* Forms */
 .form {
   /* min-height: calc(100vh - 72px); */
   margin-top: 60px;
@@ -104,16 +104,38 @@ header .container .user {
   margin-bottom: 5px;
 }
 .form form div input,
-.form form  input[type="submit"] {
+.form form  input[type="submit"],
+.form form div select,
+.form form div textarea {
   width: 100%;
   padding: 10px;
   border-radius: 10px;
   border: 1px solid #eee;
   outline: none;
+  resize: none;
 }
 .form form  input[type="submit"] {
   cursor: pointer;
 }
 .login-form {
 
+}
+/* Clubs App -  */
+.sec {
+
+}
+.clubs-sec .clubs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
+  gap: 40px;
+}
+.clubs-sec .clubs .club {
+  background-color: #eee;
+  padding: 20px;
+  border-radius: 10px;
+}
+.clubs-sec .clubs .club {
+}
+.clubs-sec .clubs .club img{
+  width: 200px;
 }

@@ -42,6 +42,17 @@ def logout_view(request: HttpRequest):
   messages.success(request,"Logged out successfully", "logout-success")
   return redirect("main:home_page_view")
 
-
+# 
+def manage_users_view(request: HttpRequest):
+  if not request.user.is_superuser:
+    return redirect("main:home_page_view")
+  if request.method == "POST":
+    user_ids = request.POST.getlist("user_ids")
+    User.objects.filter(id__in= user_ids).update(is_staff= True)
+    # Any users not in user_ids = False
+    User.objects.exclude(id__in= user_ids).update(is_staff= False)
+    messages.success(request, "Updated successfully", "success")
+  users = User.objects.all()
+  return render(request, "users/manage_users.html", {"users" : users})
 
 

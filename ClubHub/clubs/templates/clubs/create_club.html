@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Create Club {% endblock %}
+
+{% block content %}
+<section class="form create-form">
+  <div class="container">
+    <h2 class="section-header">Create Club</h2>
+    <form action="{% url 'clubs:create_club_view' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div>
+        <label>Name</label>
+        <input type="text" name="name" required>
+      </div>
+      <div>
+        <label>Description</label>
+        <textarea name="description"></textarea>
+      </div>
+      <div>
+        <label>Image</label>
+        <input type="file" name="image" accept="image/*">
+      </div>
+      <div>
+        <label>Leader</label>
+        <select name="leader">
+      {% for leader in leaders %}
+      <option value="{{staff.id}}">{{leader}}</option>
+      {% endfor %}
+      </select>
+      </div>
+      <input type="submit" value="Create">
+    </form>
+  </div>
+</section>
+{% endblock %}

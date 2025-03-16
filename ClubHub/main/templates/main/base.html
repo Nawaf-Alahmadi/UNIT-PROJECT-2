@@ -14,12 +14,17 @@
   <body>
     <header>
       <div class="container">
-        <div class="web-name">Club Hub</div>
+        <a href="{% url 'main:home_page_view'%}" class="web-name">Club Hub</a>
         <nav>
           <div class="links">
+            
             <a href="{% url 'clubs:clubs_page_view' %}">Clubs</a>
-            {% if user.is_staff %}
+            {% if not user.is_superuser and user.is_staff %}
             <a href="{% url 'clubs:club_manage_view' %}">Manage</a>
+            {% endif %}
+            {% if user.is_superuser %}
+            <a href="{% url 'clubs:create_club_view' %}">Create Club</a>
+            <a href="{% url 'users:manage_users_view' %}">Manage</a>
             {% endif %}
             {% if not user.is_authenticated %}
             <a href="{% url 'users:register_page_view' %}">Register</a>

@@ -1,0 +1,10 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Clubs {% endblock %}
+
+{% block content %}
+  {{club_details.leader}}
+  <!-- {% if user.id == club_details.leader.id  %}  later when modify -->
+  yes
+  {% endif %}
+{% endblock %}

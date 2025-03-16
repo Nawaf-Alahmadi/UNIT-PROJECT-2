@@ -11,4 +11,7 @@ urlpatterns = [
   path("club/manage/", views.club_manage_view, name= "club_manage_view"),
   path("club/manage/approve/<request_id>", views.approve_member_view, name= "approve_member_view"),
   path("club/manage/reject/<request_id>", views.reject_member_view, name= "reject_member_view"),
+  path("club/create", views.create_club_view, name= "create_club_view"),
+  path("club/details/<club_id>", views.club_details_view, name= "club_details_view"),
+
 ]

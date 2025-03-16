@@ -11,6 +11,7 @@
         <div class="img"><img src="{{club.image.url}}" alt=""></div>
         <div class="info">
           <div class="name">{{club.name}}</div>
+          <a href="{% url 'clubs:club_details_view' club.id %}">More</a>
         </div>
         <div class="buttons">
           <a href="{% url 'clubs:join_club_view' club.id  %}">Request to join</a>
