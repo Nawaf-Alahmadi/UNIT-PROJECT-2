@@ -11,9 +11,9 @@
       <div class="club">
         <div class="img"><img src="{{club.image.url}}" alt=""></div>
         <div class="info">
-          <div class="name">Club Name: {{club.name}}</div>
-          <div class="leader">Leader:  {{club.leader}}</div>
-          <div class="members">Members: {{club.member_count}}</div>
+          <div class="name">{{club.name}} Club</div>
+          <div class="leader"><i class="fa-solid fa-user"></i><span>{{club.leader}}</span></div>
+          <div class="members"><i class="fa-solid fa-users"></i> <span>{{club.member_count}}</span></div>
         </div>
         <div class="buttons">
           <a href="{% url 'clubs:club_details_view' club.id %}" class="more">More</a>

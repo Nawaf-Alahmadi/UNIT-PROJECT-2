@@ -3,6 +3,7 @@ from django.http import HttpRequest, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from clubs.models import Membership, Club
 
 
 # Create your views here.
@@ -42,7 +43,7 @@ def logout_view(request: HttpRequest):
   messages.success(request,"Logged out successfully", "logout-success")
   return redirect("main:home_page_view")
 
-# 
+# Manage user access (Admin)
 def manage_users_view(request: HttpRequest):
   if not request.user.is_superuser:
     return redirect("main:home_page_view")
@@ -55,4 +56,23 @@ def manage_users_view(request: HttpRequest):
   users = User.objects.all().exclude(is_superuser= True)
   return render(request, "users/manage_users.html", {"users" : users})
 
+# Profile 
 
+def users_profile_view(request: HttpRequest, user_id):
+  if not request.user.is_authenticated or  request.user.is_superuser:
+    return redirect("main:home_page_view")
+  user= User.objects.get(pk= user_id)
+  if request.user.is_staff:
+    leader = User.objects.get(id= user_id)
+    
+    if Club.objects.filter(leader=leader).exists():
+      leader_managed_club = Club.objects.get(leader=leader)
+      return render(request, "users/profile.html", {'user':user, "leader_managed_club":leader_managed_club})
+    else:
+      return render(request, "users/profile.html", {'user':user})
+
+  else:
+    user_clubs = Membership.objects.filter(user= user, status="APPROVED")
+
+    return render(request, "users/profile.html", {'user':user, 'user_clubs':user_clubs})
+  

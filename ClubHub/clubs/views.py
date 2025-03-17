@@ -34,12 +34,14 @@ def join_club_view(request, club_id):
 def club_manage_view(request:HttpRequest):
   if not request.user.is_staff or request.user.is_superuser:
     return redirect("main:home_page_view")
-
-  managed_club = Club.objects.get(leader= request.user)
-  pending_members = Membership.objects.filter(club= managed_club, status= "PENDING")
-  approved_members = Membership.objects.filter(club= managed_club, status= "APPROVED")
-  
-  return render(request, "clubs/club_manage.html", {'pending_members': pending_members, 'approved_members': approved_members})
+  if Club.objects.filter(leader= request.user).exists():
+    managed_club = Club.objects.get(leader= request.user)
+    pending_members = Membership.objects.filter(club= managed_club, status= "PENDING")
+    approved_members = Membership.objects.filter(club= managed_club, status= "APPROVED")
+    return render(request, "clubs/club_manage.html", {'pending_members': pending_members, 'approved_members': approved_members})
+  else:
+    messages.error(request,"You do not lead a club", 'error')
+    return redirect("main:home_page_view")
 
 # Approve join Requests (Leader)
 def approve_member_view(request:HttpRequest,request_id):
@@ -103,3 +105,13 @@ def club_details_view(request:HttpRequest, club_id):
   club_details = Club.objects.get(pk= club_id)
   members_of_club = User.objects.filter(memberships__club=club_details, memberships__status="APPROVED") # check it again
   return render(request, "clubs/club_details.html", {'club_details' : club_details, 'members_of_club':members_of_club})
+
+
+# 
+
+def leave_member_view(request:HttpRequest, club_id, user_id):
+  user = User.objects.get(pk= user_id)
+  club = Club.objects.get(pk= club_id)
+  membership = Membership.objects.get(user= user, club= club)
+  membership.delete()
+  return redirect("users:users_profile_view", user_id)

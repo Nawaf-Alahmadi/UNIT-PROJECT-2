@@ -6,15 +6,15 @@
   <!-- {{club_details.leader}} -->
   <!-- {% if user.id == club_details.leader.id  %}  later when modify -->
   <!-- {% endif %} -->
-  <section class="sec club-details-sec table-style">
+  <section class="sec club-details-sec clubs-sec table-style">
     <div class="container">
       <section class="all-info">
         <div class="club">
           <div class="img"><img src="{{club_details.image.url}}" alt=""></div>
           <div class="info">
-            <div class="name">Club Name: {{club_details.name}}</div>
+            <div class="name">{{club_details.name}} Club</div>
             <div class="description">Club Description: {{club_details.description}}</div>
-            <div class="leader">Leader:  {{club_details.leader}}</div>
+            <div class="leader"><i class="fa-solid fa-user"></i><span>{{club_details.leader}}</span></div>
           </div>
           <div class="buttons">
             {% if not request.user.is_staff and request.user.is_authenticated %}
