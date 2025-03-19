@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Create Event {% endblock %}
+
+{% block content %}
+<section class="form create-form">
+  <div class="container">
+    <h2 class="section-header">Create Event</h2>
+    <form action="{% url 'events:create_event_view' %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div>
+        <label>Title</label>
+        <input type="text" name="title" placeholder="Enter event name" required>
+      </div>
+      <div>
+        <label>Description</label>
+        <textarea name="description" placeholder="Enter event description"></textarea>
+      </div>
+      <div>
+        <label>Image</label>
+        <input type="file" name="image" accept="image/*">
+      </div>
+      <div>
+        <label>Date</label>
+        <input type="date" name="date" required>
+      </div>
+      <div>
+        <label>Visibility</label>
+        <select name="visibility">
+          <option value="">Choose Visibility</option>
+          {% for value, label in visibility_choices %}
+          <option value="{{value}}">{{label}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <input type="submit" value="Create">
+    </form>
+  </div>
+</section>
+{% endblock %}

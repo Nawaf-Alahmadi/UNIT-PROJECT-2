@@ -149,8 +149,10 @@ header .container nav {
 
 header .container nav .links {
   display: flex;
-
   gap: 10px;
+}
+header .container nav > i {
+  display: none;
 }
 
 header .container nav .links a {
@@ -181,14 +183,21 @@ header .container .user {
     height: 40px;
     margin-top: 10px;
   }
-
+  header .container nav {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+  }
+  header .container nav > i {
+    display: block;
+  } 
+  header .container nav .links {
+    flex-direction: column;
+    flex-wrap: wrap;
+    display: none;
+  }
   header .container nav .links a {
     height: 40px;
-  }
-
-  header .container nav {
-    flex-direction: column-reverse;
-    gap: 0;
   }
 
   header .container .user {
@@ -319,6 +328,10 @@ header .container .user .name {
 
 .clubs-sec .club .info {
   padding: 30px 0 20px;
+}
+.clubs-sec .club .info p{
+  color: var(--text-primary);
+  line-height: 1.5;
 }
 
 .clubs-sec .club .info .name {
@@ -466,7 +479,56 @@ header .container .user .name {
   background-color: #DB5757;
 }
 
+.events-sec .events {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.events-sec .events .event {
+  width: 100%;
+  Background: #FFFFFF;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.events-sec .events .event::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  z-index: -1;
+  background-color: var(--primary-light);
+  transition: var(--transition-d);
 
+}
+
+.events-sec .events .event:hover::before {
+  width: 100%;
+}
+.events-sec .events .event .img  {
+  text-align: center;
+}
+.events-sec .events .event .img img {
+  width: 200px;
+}
+.events-sec .events .event .info {
+  
+}
+.events-sec .events .event .info h3 {
+
+}
+.events-sec .events .event .info p {
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+.events-sec .events .event .info .date i{
+  color: var(--primary);
+}
 /* Users App */
 .profile-sec .container > div {
   margin: 50px 0;

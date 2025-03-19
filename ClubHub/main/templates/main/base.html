@@ -19,28 +19,29 @@
       <div class="container">
         <a href="{% url 'main:home_page_view'%}" class="web-name">ClubHub</a>
         <nav>
+          <i class="fa-solid fa-bars"></i>
           <div class="links">
             <a href="{% url 'clubs:clubs_page_view' %}">Clubs</a>
-            {% if not user.is_superuser and user.is_authenticated %}
-            <a href="{% url 'users:users_profile_view' request.user.id %}">Profile</a>
-            {% endif %}
+            <a href="{% url 'events:events_page_view' %}">Events</a>
             {% if not user.is_superuser and user.is_staff %}
             <a href="{% url 'clubs:club_manage_view' %}">Manage</a>
+            <a href="{% url 'events:create_event_view' %}">Create Event</a>
             {% endif %}
             {% if user.is_superuser %}
             <a href="{% url 'clubs:create_club_view' %}">Create Club</a>
             <a href="{% url 'users:manage_users_view' %}">Manage</a>
             {% endif %}
             {% if not user.is_authenticated %}
+            
             <a href="{% url 'users:register_page_view' %}">Register</a>
             <a href="{% url 'users:login_page_view' %}">Login</a>
             {% else %}
             <a href="{% url 'users:logout_view'%}">Logout</a>
             {% endif %}
           </div>
-          {% if user.is_authenticated %}
+          {% if not user.is_superuser and user.is_authenticated%}
           <div class="user">
-            <i class="fa-solid fa-circle-user"></i>
+            <a href="{% url 'users:users_profile_view' request.user.id %}"><i class="fa-solid fa-circle-user"></i></a>
             <div class="name">{{user.username}}</div>
           </div>
           {% endif %}

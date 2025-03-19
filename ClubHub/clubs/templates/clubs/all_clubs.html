@@ -13,7 +13,7 @@
         <div class="info">
           <div class="name">{{club.name}} Club</div>
           <div class="leader"><i class="fa-solid fa-user"></i><span>{{club.leader}}</span></div>
-          <div class="members"><i class="fa-solid fa-users"></i> <span>{{club.member_count}}</span></div>
+          <div class="members"><i class="fa-solid fa-users"></i> <span>{{club.approved_member_count}}</span></div>
         </div>
         <div class="buttons">
           <a href="{% url 'clubs:club_details_view' club.id %}" class="more">More</a>

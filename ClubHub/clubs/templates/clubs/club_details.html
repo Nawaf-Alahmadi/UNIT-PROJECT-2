@@ -13,7 +13,7 @@
           <div class="img"><img src="{{club_details.image.url}}" alt=""></div>
           <div class="info">
             <div class="name">{{club_details.name}} Club</div>
-            <div class="description">Club Description: {{club_details.description}}</div>
+            <p class="description">Club Description: {{club_details.description}}</p>
             <div class="leader"><i class="fa-solid fa-user"></i><span>{{club_details.leader}}</span></div>
           </div>
           <div class="buttons">
@@ -52,6 +52,34 @@
 
         </div>
       </section>
+      {% if private_events %}
+      <section class="sec events-sec">
+        <div class="container">
+          <h2 class="section-header">Events</h2>
+          
+          <div class="events">
+            {% for private_event in private_events %}
+            <div class="event">
+              <div class="img">
+                <img src="{{private_event.image.url}}" alt="">
+              </div>
+              <div class="info">
+                <h3>{{private_event.title}}</h3>
+                <p>{{private_event.description}}</p>
+                <div class="date"><i class="fa-solid fa-calendar-days"></i> <span>{{private_event.date}}</span></div>
+              </div>
+              <!-- {{private_event.title}}
+              <br>
+              {{private_event.description}}
+              <br>
+              {{private_event.date}} -->
+            </div>
+            {% endfor %}
+          </div>
+          
+        </div>
+      </section>
+      {% endif %}
     </div>
   </section>
 {% endblock %}

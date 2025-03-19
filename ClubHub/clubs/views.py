@@ -3,8 +3,9 @@ from django.http import HttpRequest, HttpResponse
 from django.contrib import messages
 # Database
 from .models import Club, Membership
+from events.models import Event
 from django.contrib.auth.models import User
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.utils import timezone
 
 
@@ -12,7 +13,7 @@ from django.utils import timezone
 
 # All clubs  page
 def clubs_page_view(request: HttpRequest):
-  clubs = Club.objects.annotate(member_count=Count('memberships')) # check it again
+  clubs = Club.objects.annotate(approved_member_count=Count('memberships', filter=Q(memberships__status="APPROVED")))
   return render(request, "clubs/all_clubs.html", {'clubs' : clubs})
 
 # Request to join view (Student)
@@ -104,6 +105,10 @@ def modify_club_view(request:HttpRequest, club_id):
 def club_details_view(request:HttpRequest, club_id):
   club_details = Club.objects.get(pk= club_id)
   members_of_club = User.objects.filter(memberships__club=club_details, memberships__status="APPROVED") # check it again
+  if request.user.is_authenticated:
+    if Membership.objects.filter(user= request.user , club= club_details).exists() or club_details.leader == request.user:
+      private_events = Event.objects.filter(visibility= "PRIVATE", club=club_details)
+      return render(request, "clubs/club_details.html", {'club_details' : club_details, 'members_of_club':members_of_club, "private_events":private_events})
   return render(request, "clubs/club_details.html", {'club_details' : club_details, 'members_of_club':members_of_club})
 
 

@@ -1,0 +1,23 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Events {% endblock %}
+
+{% block content %}
+<section class="sec clubs-sec">
+  <div class="container">
+    <h2 class="section-header">Events</h2>
+    <div class="clubs">
+      {% for event in events %}
+      <div class="club">
+        <div class="img"><img src="{{event.image.url}}" alt=""></div>
+        <div class="info">
+          <div class="name">{{event.title}}</div>
+          <div class="description">{{event.description}}</div>
+          <div class="date"><i class="fa-solid fa-calendar-days"></i> {{event.date}}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
