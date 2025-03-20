@@ -16,9 +16,12 @@
         <label>Description</label>
         <textarea name="description">{{club_details.description}}</textarea>
       </div>
-      <div>
-        <label>Image</label>
-        <input type="file" name="image" accept="image/*">
+      <div class="input-container">
+        <div>
+          <label>Image</label>
+          <input type="file" name="image" accept="image/*">
+        </div>
+
         <img src="{{club_details.image.url}}" alt="">
       </div>
       <input type="submit" value="Modify">

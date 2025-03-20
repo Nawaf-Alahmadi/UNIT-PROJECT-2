@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Modify Event {% endblock %}
+
+{% block content %}
+<section class="form create-form">
+  <div class="container">
+    <h2 class="section-header">Modify Event</h2>
+    <form action="{% url 'events:event_modify_view' event.id leader_id %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div>
+        <label>Title</label>
+        <input type="text" name="title" placeholder="Enter event name" required value="{{event.title}}">
+      </div>
+      <div>
+        <label>Description</label>
+        <textarea name="description" placeholder="Enter event description">{{event.description}}</textarea>
+      </div>
+      <div class="input-container">
+        <div>
+          <label>Image</label>
+          <input type="file" name="image" accept="image/*" value="event.image.url">
+        </div>
+        <img src="{{event.image.url}}" alt="">
+      </div>
+      <div>
+        <label>Date</label>
+        <input type="date" name="date" required value="{{event.date|date:'Y-m-d'}}">
+      </div>
+      <div>
+        <label>Visibility</label>
+        <select name="visibility">
+          <option value="">Choose Visibility</option>
+          {% for value, label in visibility_choices %}
+          <option value="{{value}}" {% if event.visibility == value %} selected{% endif %}>{{label}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <input type="submit" value="Modify">
+    </form>
+  </div>
+</section>
+{% endblock %}

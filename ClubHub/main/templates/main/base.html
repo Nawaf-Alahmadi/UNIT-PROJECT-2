@@ -24,7 +24,7 @@
             <a href="{% url 'clubs:clubs_page_view' %}">Clubs</a>
             <a href="{% url 'events:events_page_view' %}">Events</a>
             {% if not user.is_superuser and user.is_staff %}
-            <a href="{% url 'clubs:club_manage_view' %}">Manage</a>
+            <a href="{% url 'clubs:club_manage_view' %}">Requests</a>
             <a href="{% url 'events:create_event_view' %}">Create Event</a>
             {% endif %}
             {% if user.is_superuser %}

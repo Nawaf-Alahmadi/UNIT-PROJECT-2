@@ -21,7 +21,10 @@
   --transition-d: 0.3s;
   --success-message: #4CAF50;
   --error-message: #FF5252;
-  --warning-message: #FFC107;
+  --btn-del: #FF6363;
+  --btn-del-hover: #DB5757;
+  --btn-mod: #FFC107;
+  --btn-mod-hover: #E6AE06;
 }
 
 ::placeholder {
@@ -64,7 +67,10 @@ input:focus::placeholder {
 body {
   font-family: "Poppins", sans-serif;
 }
-
+section {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
 a {
   text-decoration: none;
 }
@@ -90,7 +96,8 @@ a {
 /* Base HTML */
 /* Messages */
 .success,
-.error {
+.error,
+.warning{
   text-align: center;
   padding: 10px;
   border-radius: 10px;
@@ -108,6 +115,9 @@ a {
 
 .error {
   background-color: var(--error-message);
+}
+.warning {
+  background-color: var(--btn-mod);
 }
 
 @keyframes disappear {
@@ -230,8 +240,16 @@ header .container .user .name {
 
 }
 
-.form form div {}
-
+.form form .input-container {
+  display: flex;
+  gap: 20px;
+}
+.form form .input-container div {
+  flex: 1;
+}
+.form form > .input-container img {
+  width: 80px;
+}
 .form form div label {
   display: block;
   margin-bottom: 5px;
@@ -370,7 +388,18 @@ header .container .user .name {
 .clubs-sec .club .buttons a:hover {
   background-color: var(--primary-hover);
 }
-
+.clubs-sec .club .buttons a.modify {
+  background-color: var(--btn-mod);
+}
+.clubs-sec .club .buttons a.delete {
+  background-color: var(--btn-del);
+}
+.clubs-sec .club .buttons a.modify:hover {
+  background-color: var(--btn-mod-hover);
+}
+.clubs-sec .club .buttons a.delete:hover {
+  background-color: var(--btn-del-hover);
+}
 /* Club details */
 .club-details-sec .all-info .club {
   display: flex;
@@ -471,12 +500,12 @@ header .container .user .name {
 }
 
 .btn-reject {
-  background-color: #FF6363;
+  background-color: var(--btn-del);
   color: white;
 }
 
 .btn-reject:hover {
-  background-color: #DB5757;
+  background-color: var(--btn-del-hover);
 }
 
 .events-sec .events {

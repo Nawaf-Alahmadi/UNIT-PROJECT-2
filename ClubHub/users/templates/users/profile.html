@@ -42,7 +42,7 @@
           </div>
           <div class="buttons">
             <a href="{% url 'clubs:club_details_view' user_club.club.id %}" class="more">More</a>
-            <a href="{% url 'clubs:leave_member_view' user_club.club.id request.user.id %}">Leave</a>
+            <a href="{% url 'clubs:leave_member_view' user_club.club.id request.user.id %}" class="delete">Leave</a>
 
           </div>
 
@@ -71,7 +71,53 @@
         </div>
       </div>
     </div>
+    <section class="sec clubs-sec">
+      <div class="container">
+        <h2 class="section-header">Events</h2>
+        <div class="clubs">
+          {% for event in events %}
+          <div class="club">
+            <div class="img"><img src="{{event.image.url}}" alt=""></div>
+            <div class="info">
+              <div class="name">{{event.title}}</div>
+              <div class="description">{{event.description}}</div>
+              <div class="date"><i class="fa-solid fa-calendar-days"></i> {{event.date}}</div>
+              <div class="attendance">Particapance: <span>{{event.attendance_count}}</span></div>
+            </div>
+            <div class="buttons">
+              <a href="{% url 'events:event_modify_view' event.id leader_managed_club.leader.id  %}" class="modify">Modify</a>
+              <a href="{% url 'events:event_delete_view' event.id leader_managed_club.leader.id  %}" class="delete">Delete</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
       {% endif %}
+
+    {% endif %}
+
+    {% if user_events %}
+    <div class="clubs-sec events">
+      <h3>Joined Events</h3>
+      <div class="clubs">
+        {% for user_event in user_events %}
+        <div class="club">
+          <div class="img"><img src="{{user_event.image.url}}" alt=""></div>
+          <div class="info">
+            <div class="name">{{user_event.title}}</div>
+            <div class="description">{{user_event.description}}</div>
+            <div class="date"><i class="fa-solid fa-calendar-days"></i> {{user_event.date}}</div>
+            <div class="attendance">Particapance: <span>{{user_event.attendance_count}}</span></div>
+          </div>
+          <div class="buttons">
+
+          </div>
+
+        </div>
+        {% endfor %}
+      </div>
+    </div>
     {% endif %}
 
   </div>

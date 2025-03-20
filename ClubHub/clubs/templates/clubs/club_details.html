@@ -20,7 +20,7 @@
             {% if not request.user.is_staff and request.user.is_authenticated %}
             <a href="{% url 'clubs:join_club_view' club_details.id  %}" class="join">Request to join</a>
             {% endif %}
-              {% if user.id == club_details.leader.id  %}  
+              {% if user.id == club_details.leader.id and request.user.is_authenticated %}  
               <a href="{% url 'clubs:modify_club_view' club_details.id  %}" class="modify">Modify</a>
               {% endif %}
           </div>
@@ -67,6 +67,12 @@
                 <h3>{{private_event.title}}</h3>
                 <p>{{private_event.description}}</p>
                 <div class="date"><i class="fa-solid fa-calendar-days"></i> <span>{{private_event.date}}</span></div>
+                <div class="attendance">Particapance: <span>{{private_event.attendance_count}}</span></div>
+
+              </div>
+              <div class="buttons">
+                <a href="{% url 'events:event_attend_interested_view' private_event.id request.user.id  'ATTENDING' %}">Attending</a>
+                <a href="{% url 'events:event_attend_interested_view' private_event.id request.user.id  'INTERESTED' %}">Interested</a>
               </div>
               <!-- {{private_event.title}}
               <br>

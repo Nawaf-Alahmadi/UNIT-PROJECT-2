@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block title %} Event Management {% endblock %}
+
+{% block content %}
+  <section class="sec manage-sec table-style">
+    <div class="container">
+      <h2 class="section-header">Event Management</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Event Name</th>
+              <th>visibility</th>
+              <th>Date</th>
+              <th>Attendance</th>
+              <th>Interested</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for event in events  %}
+            <tr>
+              <td>{{event.title}}</td>
+              <td>{{event.visibility}}</td>
+              <td>{{event.date}}</td>
+              <td>{{event.attendance_count}}</td>
+              <td>{{event.intersted_count}}</td>
+
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+{% endblock %}

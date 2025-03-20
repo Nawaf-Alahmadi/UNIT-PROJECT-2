@@ -14,6 +14,11 @@
           <div class="name">{{event.title}}</div>
           <div class="description">{{event.description}}</div>
           <div class="date"><i class="fa-solid fa-calendar-days"></i> {{event.date}}</div>
+          <div class="attendance">Particapance: <span>{{event.attendance_count}}</span></div>
+        </div>
+        <div class="buttons">
+          <a href="{% url 'events:event_attend_interested_view' event.id request.user.id  'ATTENDING' %}">Attending</a>
+          <a href="{% url 'events:event_attend_interested_view' event.id request.user.id  'INTERESTED' %}">Interested</a>
         </div>
       </div>
       {% endfor %}

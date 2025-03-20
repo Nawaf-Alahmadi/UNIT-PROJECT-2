@@ -107,7 +107,12 @@ def club_details_view(request:HttpRequest, club_id):
   members_of_club = User.objects.filter(memberships__club=club_details, memberships__status="APPROVED") # check it again
   if request.user.is_authenticated:
     if Membership.objects.filter(user= request.user , club= club_details).exists() or club_details.leader == request.user:
-      private_events = Event.objects.filter(visibility= "PRIVATE", club=club_details)
+      private_events = Event.objects.filter(
+          visibility="PRIVATE",
+          club=club_details
+      ).annotate(
+          attendance_count=Count('rsvps', filter=Q(rsvps__status='ATTENDING'))  
+      )
       return render(request, "clubs/club_details.html", {'club_details' : club_details, 'members_of_club':members_of_club, "private_events":private_events})
   return render(request, "clubs/club_details.html", {'club_details' : club_details, 'members_of_club':members_of_club})
 
