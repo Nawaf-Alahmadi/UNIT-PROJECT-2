@@ -3,7 +3,7 @@
 {% block title %} Clubs {% endblock %}
 
 {% block content %}
-<section class="sec clubs-sec">
+<section class="sec clubs-sec {% if request.COOKIES.mode == 'dark' %} dark {% endif %}">
   <div class="container">
     <h2 class="section-header">Clubs</h2>
     <div class="clubs">

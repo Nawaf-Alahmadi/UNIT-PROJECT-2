@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+  <h2>Delete {{ event.name }}?</h2>
+  <p>Are you sure you want to leave this club? This action cannot be undone.</p>
+  
+  <form method="post" action="{% url 'events:event_delete_view' event.id leader_id %}">
+    {% csrf_token %}
+    <button type="submit">Confirm</button>
+    <a href="{% url 'users:users_profile_view' leader_id %}">Cancel</a>
+  </form>
+{% endblock %}

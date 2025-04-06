@@ -3,3 +3,72 @@
 {% block title %}
 Home
 {% endblock %}
+{% block content %}
+  <section class="home-sec">
+    <div class="container">
+      <h1>Welcome to ClubHub – Your Gateway to Campus Life</h1>
+      <p>Discover clubs, join events, and connect with your university community.</p>
+      <form action="{% url 'main:search' %}" method="get">
+        <input type="search" name="search" placeholder="Search for clubs or events">
+      </form>
+    </div>
+  </section>
+  <section class="sec clubs-sec {% if request.COOKIES.mode == 'dark' %} dark {% endif %}">
+    <div class="container">
+      <a href="{% url 'clubs:clubs_page_view'%}" class="more-btn">More <i class="fa-solid fa-angles-right"></i></a>
+      <h2 class="section-header">Clubs</h2>
+      <div class="clubs">
+        {% for club in clubs %}
+        <div class="club">
+          <div class="img"><img src="{{club.image.url}}" alt=""></div>
+          <div class="info">
+            <div class="name">{{club.name}} Club</div>
+            <div class="leader"><i class="fa-solid fa-user"></i><span>{{club.leader}}</span></div>
+            <div class="members"><i class="fa-solid fa-users"></i> <span>{{club.approved_member_count}}</span></div>
+          </div>
+          <div class="buttons">
+            <a href="{% url 'clubs:club_details_view' club.id %}" class="more">More</a>
+            {% if not request.user.is_staff and request.user.is_authenticated %}
+            <a href="{% url 'clubs:join_club_view' club.id  %}" class="join">Request to join</a>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <section class="sec clubs-sec {% if request.COOKIES.mode == 'dark' %} dark {% endif %}">
+    <div class="container">
+      <a href="{% url 'events:events_page_view'%}" class="more-btn">More <i class="fa-solid fa-angles-right"></i></a>
+      <h2 class="section-header">Events</h2>
+      <div class="clubs">
+        {% for event in events %}
+        <div class="club">
+          <div class="img"><img src="{{event.image.url}}" alt=""></div>
+          <div class="info">
+            <div class="name">{{event.title}}</div>
+            <div class="description">{{event.description}}</div>
+            <div class="date"><i class="fa-solid fa-calendar-days"></i> {{event.date}}</div>
+            <div class="attendance">Particapance: <span>{{event.attendance_count}}</span></div>
+          </div>
+          <div class="buttons">
+            <a href="{% url 'events:event_attend_interested_view' event.id request.user.id  'ATTENDING' %}">Attending</a>
+            <a href="{% url 'events:event_attend_interested_view' event.id request.user.id  'INTERESTED' %}">Interested</a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <div class="contact-sec">
+    <div class="container">
+      <h2 class="section-header">Contact Us</h2>
+      <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="name" placeholder="Name">
+        <input type="email" name="email" placeholder="Email">
+        <textarea name="Message" placeholder="Message"></textarea>
+      </form>
+    </div>
+  </div>
+{% endblock %}

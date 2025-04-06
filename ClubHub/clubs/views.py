@@ -122,6 +122,8 @@ def club_details_view(request:HttpRequest, club_id):
 def leave_member_view(request:HttpRequest, club_id, user_id):
   user = User.objects.get(pk= user_id)
   club = Club.objects.get(pk= club_id)
-  membership = Membership.objects.get(user= user, club= club)
-  membership.delete()
-  return redirect("users:users_profile_view", user_id)
+  if request.method == "POST":
+    membership = Membership.objects.get(user= user, club= club)
+    membership.delete()
+    return redirect("users:users_profile_view", user_id)
+  return render(request, "clubs/leave_confirmation.html", {"club": club, "user": user})

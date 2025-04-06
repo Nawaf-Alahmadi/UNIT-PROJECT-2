@@ -49,9 +49,11 @@ def event_modify_view(request:HttpRequest, event_id, leader_id):
 
 def event_delete_view(request:HttpRequest, event_id, leader_id):
   event = Event.objects.get(pk=event_id)
-  event.delete()
-  messages.success(request, "Event deleted successfuly", "success")
-  return redirect("users:users_profile_view", leader_id)
+  if request.method == "POST":
+    event.delete()
+    messages.success(request, "Event deleted successfuly", "success")
+    return redirect("users:users_profile_view", leader_id)
+  return render(request, "events/delete_event_confirmation.html", {"event" : event, "leader_id":leader_id})
 
 
 def event_attend_interested_view(request: HttpRequest, event_id, user_id, status):

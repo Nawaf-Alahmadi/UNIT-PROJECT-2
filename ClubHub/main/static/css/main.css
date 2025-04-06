@@ -14,7 +14,6 @@
   --secondary: #FF6363;
   --button-bg: #F5F5F5;
   --bg-light: #FFFFFF;
-  --bg-dark: #1E1E1E;
   --text-primary: #2D2D2D;
   --text-secondary: #4A4A4A;
   --border-color: #CCCCCC;
@@ -25,6 +24,16 @@
   --btn-del-hover: #DB5757;
   --btn-mod: #FFC107;
   --btn-mod-hover: #E6AE06;
+  /* Dark Mode */
+  --primary-dark: #8A82FF;
+  --primary-light-dark: #3B3782;
+  --primary-hover-dark: #6C63FF;
+  --secondary-dark: #FF7676;
+  --button-bg-dark: #2D2D2D;
+  --bg-light-dark: #1A1A1A;
+  --text-primary-dark: #F5F5F5;
+  --text-secondary-dark: #B0B0B0;
+  --border-color-dark: #444444;
 }
 
 ::placeholder {
@@ -66,6 +75,9 @@ input:focus::placeholder {
 
 body {
   font-family: "Poppins", sans-serif;
+}
+body.dark {
+  background-color: #1E1E1E;
 }
 section {
   margin-top: 60px;
@@ -218,7 +230,91 @@ header .container .user {
 header .container .user .name {
   display: none;
 }
+/* Foorter */
+footer p {
+  background-color: var(--primary-dark);
+  color: #fff;
+  padding: 20px 10px;
+  text-align: center;
+}
+/* main */
+main {
+  position: relative;
+  min-height: calc(100vh - 72px);
+}
+/* Home Page */
+.home-sec {
+  height: calc(100vh - 72px);
+  margin: 0;
+  background-image: url("../images/home-img.jpg");
+  background-size: cover;
+  /* filter: brightness(0.5); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.home-sec h1 {
+  font-size: 28px;
+  font-weight: bold;
+  background: linear-gradient(90deg, #6C63FF, #A88BFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+.home-sec p {
+  background: linear-gradient(90deg, #6C63FF, #A88BFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+.home-sec form {
+  text-align: center;
+}
+.home-sec form input {
+  width: 600px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+  outline: none;
+  border: 1px solid var(--border-color);
+  caret-color: var(--primary);
+}
+@media(max-width:767px) {
+  .home-sec form input {
+    width: 100%;
+  }
+}
+/* Contact */
+.contact-sec .section-header {
+  margin-bottom: 50px;
+}
+.contact-sec form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2%;
+}
+.contact-sec form input {
+  width: 49%;
+}
 
+.contact-sec form input,
+.contact-sec form textarea {
+  padding: 10px 30px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  outline: none;
+  background-color: var(--button-bg);
+  transition: var(--transition-d);
+  font-size: 16px;
+  resize: none;
+}
+.contact-sec form textarea {
+  width: 100%;
+  margin-top: 10px;
+  height: 100px;
+
+}
 /* Forms */
 .form {
   /* min-height: calc(100vh - 72px); */
@@ -297,6 +393,14 @@ header .container .user .name {
   margin-bottom: 50px;
 }
 
+.clubs-sec .container {
+  position: relative;
+}
+.clubs-sec .container .more-btn {
+  position: absolute;
+  right: 20px;
+  top: 5px;
+}
 .clubs-sec .section-header {
   margin-bottom: 50px;
 }
@@ -316,7 +420,6 @@ header .container .user .name {
   overflow: hidden;
   z-index: 1;
 }
-
 .clubs-sec .club::before {
   content: "";
   position: absolute;
@@ -416,6 +519,42 @@ header .container .user .name {
 
 .club-details-sec .all-info .club img {
   width: 300px;
+}
+/* Dark */
+.clubs-sec.dark .club {
+  background-color: #1A1A1A; 
+  box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1); 
+}
+
+.clubs-sec.dark .club::before {
+  background-color: var(--primary-light-dark); 
+}
+
+.clubs-sec.dark .club .info p {
+  color: var(--text-primary-dark); 
+}
+
+.clubs-sec.dark .club .info div span {
+  color: var(--text-secondary-dark);
+}
+
+.clubs-sec.dark .club .buttons a {
+  background-color: var(--primary-dark);
+}
+
+.clubs-sec.dark .club .buttons a:hover {
+  background-color: var(--primary-hover-dark);
+}
+.clubs-sec.dark .club .info .name {
+  color: var(--text-primary-dark); 
+}
+
+.clubs-sec.dark .club .info .leader span {
+  color: var(--text-secondary-dark); 
+}
+
+.clubs-sec.dark .club .info .member span {
+  color: var(--text-secondary-dark); 
 }
 
 .table-style .table-container {

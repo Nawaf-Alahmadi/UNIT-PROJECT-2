@@ -52,7 +52,7 @@
     </div>
     {% else %}
       {% if leader_managed_club %}
-    <div class="clubs-sec managed">
+    <div class="clubs-sec {% if request.COOKIES.mode == 'dark' %} dark {% endif %} managed">
       <h3>Managed Club</h3>
       <div class="clubs">
         <div class="club">
