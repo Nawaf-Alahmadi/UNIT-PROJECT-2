@@ -6,6 +6,8 @@ from django.contrib import messages
 from clubs.models import Membership, Club
 from events.models import Event, RSVP
 from django.db.models import Count, Q
+from django.core.mail import EmailMessage
+from django.conf import settings
 
 
 
@@ -18,6 +20,16 @@ def register_page_view(request: HttpRequest):
       new_user = User.objects.create_user(username= request.POST['username'], password= request.POST['password'], email= request.POST['email'], first_name= request.POST['first_name'], last_name= request.POST['last_name'])
       new_user.save()
       messages.success(request,"Registered successfully", "success")
+
+      # Send Email
+      content = "Thank you for registering at ClubHub. We’re excited to have you with us!"
+      send_to = new_user.email
+      email_message = EmailMessage("Welcome to ClubHub!", content, settings.EMAIL_HOST_USER, [send_to])
+      # email_message.content_subtype = "html"
+      email_message.send()
+
+
+
       return redirect("users:login_page_view")
     except Exception as e: 
       messages.error(request,"Not Registered successfully", "error")

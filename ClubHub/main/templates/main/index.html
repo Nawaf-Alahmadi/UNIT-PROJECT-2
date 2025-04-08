@@ -60,15 +60,16 @@ Home
       </div>
     </div>
   </section>
-  <div class="contact-sec">
+  <section class="contact-sec">
     <div class="container">
       <h2 class="section-header">Contact Us</h2>
-      <form action="" method="post">
+      <form action="{% url 'main:create_contact' %}" method="post">
         {% csrf_token %}
         <input type="text" name="name" placeholder="Name">
         <input type="email" name="email" placeholder="Email">
-        <textarea name="Message" placeholder="Message"></textarea>
+        <textarea name="message" placeholder="Message"></textarea>
+        <input type="submit" value="Send">
       </form>
     </div>
-  </div>
+  </section>
 {% endblock %}
