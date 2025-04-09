@@ -5,7 +5,7 @@ Login
 {% endblock %}
 
 {% block content %}
-<section class="form login-form">
+<section class="form login-form {% if request.COOKIES.mode == 'dark' %} dark {% endif %}">
   <div class="container">
     <h2 class="section-header">Login</h2>
     <form action="{% url 'users:login_page_view' %}" method="post">

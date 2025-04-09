@@ -3,7 +3,7 @@
 {% block title %} Create Event {% endblock %}
 
 {% block content %}
-<section class="form create-form">
+<section class="form create-form {% if request.COOKIES.mode == 'dark' %} dark {% endif %}">
   <div class="container">
     <h2 class="section-header">Create Event</h2>
     <form action="{% url 'events:create_event_view' %}" method="post" enctype="multipart/form-data">

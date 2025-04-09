@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<section class="sec manage-sec table-style">
+<section class="sec manage-sec table-style {% if request.COOKIES.mode == 'dark' %} dark {% endif %}">
     <div class="container">
         <h2 class="section-header">Manage Users</h2>
         <div class="table-container">

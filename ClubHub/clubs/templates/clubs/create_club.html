@@ -3,7 +3,7 @@
 {% block title %} Create Club {% endblock %}
 
 {% block content %}
-<section class="form create-form">
+<section class="form create-form {% if request.COOKIES.mode == 'dark' %} dark {% endif %}">
   <div class="container">
     <h2 class="section-header">Create Club</h2>
     <form action="{% url 'clubs:create_club_view' %}" method="post" enctype="multipart/form-data">

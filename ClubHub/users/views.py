@@ -35,8 +35,11 @@ def register_page_view(request: HttpRequest):
       messages.error(request,"Not Registered successfully", "error")
       return render(request, "users/register.html")
 
-
-  return render(request, "users/register.html")
+  if not request.user.is_authenticated:
+    return render(request, "users/register.html")
+  else:
+    messages.error(request, "You are already registerd")
+    return redirect("main:home_page_view")
 
 # Login a user
 def login_page_view(request: HttpRequest):
@@ -50,7 +53,11 @@ def login_page_view(request: HttpRequest):
     else:
       messages.error(request,"Not Logged in successfully", "error")
       return render(request, "users/login.html")
-  return render(request, "users/login.html")
+  if not request.user.is_authenticated:
+    return render(request, "users/login.html")
+  else:
+    messages.error(request, "You are already logged in")
+    return redirect("main:home_page_view")
 
 # Logout a user
 def logout_view(request: HttpRequest):

@@ -3,7 +3,7 @@
 {% block title %} Profile - {{user.username}} {% endblock %}
 
 {% block content%}
-<section class="sec profile-sec">
+<section class="sec profile-sec {% if request.COOKIES.mode == 'dark' %} dark {% endif %}">
   <div class="container">
     <h2 class="section-header">Profile</h2>
     <div class="personal-info table-style">
@@ -30,7 +30,7 @@
       </div>
     </div>
     {% if not request.user.is_staff %}
-    <div class="clubs-sec joined">
+    <div class="clubs-sec joined {% if request.COOKIES.mode == 'dark' %} dark {% endif %} ">
       <h3>Joined Clubs</h3>
       {% for user_club in user_clubs %}
       <div class="clubs">
@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <section class="sec clubs-sec">
+    <section class="sec clubs-sec {% if request.COOKIES.mode == 'dark' %} dark {% endif %}">
       <div class="container">
         <h2 class="section-header">Events</h2>
         <div class="clubs">
@@ -98,7 +98,7 @@
     {% endif %}
 
     {% if user_events %}
-    <div class="clubs-sec events">
+    <div class="clubs-sec events {% if request.COOKIES.mode == 'dark' %} dark {% endif %}">
       <h3>Joined Events</h3>
       <div class="clubs">
         {% for user_event in user_events %}

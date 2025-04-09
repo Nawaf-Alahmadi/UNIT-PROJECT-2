@@ -6,8 +6,10 @@ Home
 {% block content %}
   <section class="home-sec">
     <div class="container">
-      <h1>Welcome to ClubHub – Your Gateway to Campus Life</h1>
-      <p>Discover clubs, join events, and connect with your university community.</p>
+      <div class="introduction">
+        <h1>Welcome to ClubHub – Your Gateway to Campus Life</h1>
+        <p>Discover clubs, join events, and connect with your university community.</p>
+      </div>
       <form action="{% url 'main:search' %}" method="get">
         <input type="search" name="search" placeholder="Search for clubs or events">
       </form>
@@ -60,7 +62,7 @@ Home
       </div>
     </div>
   </section>
-  <section class="contact-sec">
+  <section class="contact-sec {% if request.COOKIES.mode == 'dark' %} dark {% endif %}">
     <div class="container">
       <h2 class="section-header">Contact Us</h2>
       <form action="{% url 'main:create_contact' %}" method="post">

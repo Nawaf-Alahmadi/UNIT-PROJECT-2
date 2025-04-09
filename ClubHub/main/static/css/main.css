@@ -77,7 +77,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 body.dark {
-  background-color: #1E1E1E;
+  background-color: #2C2C2C;
 }
 section {
   margin-top: 60px;
@@ -119,6 +119,10 @@ a {
   animation-name: disappear;
   animation-duration: 4s;
   animation-fill-mode: both;
+  position: fixed;
+  top: 74px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .success {
@@ -173,8 +177,12 @@ header .container nav .links {
   display: flex;
   gap: 10px;
 }
-header .container nav > i {
+header .container nav button {
   display: none;
+  cursor: pointer;
+}
+header .container nav .links.hidden {
+  /* display: none; */
 }
 
 header .container nav .links a {
@@ -194,6 +202,39 @@ header .container .user {
   align-items: center;
   justify-content: center;
 }
+body.dark header .container .user a {
+  color: var(--primary-light);
+}
+body.dark header .container .user a {
+  color: var(--primary-light);
+}
+header .container .user a {
+  color: var(--primary-light-dark);
+}
+header .container .mode a {
+  transition: var(--transition-d);
+}
+header .container .mode a:first-child {
+  color: #facc15;
+}
+header .container .mode a:first-child:hover {
+  color: #f59e0b;
+}
+header .container .mode a:last-child {
+  color: #38bdf8;
+}
+header .container .mode a:last-child:hover {
+  color: #0ea5e9;
+}
+header .container nav button { 
+  background: transparent;
+  border: none;
+}
+
+body.dark header .container nav button {
+  color: var(--primary-light);
+
+}
 
 @media(max-width:767px) {
   header .container {
@@ -206,16 +247,22 @@ header .container .user {
     margin-top: 10px;
   }
   header .container nav {
+    /* flex-direction: column; */
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
+    
   }
-  header .container nav > i {
+  header .container nav button {
     display: block;
+    align-self: self-start;
   } 
   header .container nav .links {
     flex-direction: column;
     flex-wrap: wrap;
+  }
+  header .container nav .hidden {
     display: none;
   }
   header .container nav .links a {
@@ -224,6 +271,9 @@ header .container .user {
 
   header .container .user {
     height: 40px;
+  }
+  header .container .mode {
+    align-self: flex-start;
   }
 }
 
@@ -242,6 +292,9 @@ main {
   position: relative;
   min-height: calc(100vh - 72px);
 }
+main section:first-child {
+  /* margin-top: 0; */
+}
 /* Home Page */
 .home-sec {
   height: calc(100vh - 72px);
@@ -254,6 +307,10 @@ main {
   justify-content: center;
   flex-direction: column;
 }
+.home-sec .introduction {
+  /* backdrop-filter: blur(5px); */
+  /* border-radius: 10px; */
+}
 .home-sec h1 {
   font-size: 28px;
   font-weight: bold;
@@ -261,12 +318,16 @@ main {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
+  /* backdrop-filter: blur(10px); */
+
 }
 .home-sec p {
   background: linear-gradient(90deg, #6C63FF, #A88BFF);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-align: center;
+  /* backdrop-filter: blur(10px); */
+
 }
 .home-sec form {
   text-align: center;
@@ -297,7 +358,6 @@ main {
 .contact-sec form input {
   width: 49%;
 }
-
 .contact-sec form input,
 .contact-sec form textarea {
   padding: 10px 30px;
@@ -309,11 +369,28 @@ main {
   font-size: 16px;
   resize: none;
 }
+
 .contact-sec form textarea {
   width: 100%;
   margin-top: 10px;
   height: 100px;
 
+}
+.contact-sec form input[type="submit"] {
+  width: 100%;
+  margin-top: 10px;
+  color: white;
+  cursor: pointer;
+  background-color: var(--primary);
+  transition: var(--transition-d);
+  border: none;
+}
+.contact-sec form input[type="submit"]:hover {
+  background-color: var(--primary-hover);
+}
+.contact-sec.dark form input:not(input[type="submit"]),
+.contact-sec.dark form textarea {
+  background-color: var(--primary-light);
 }
 /* Forms */
 .form {
@@ -350,6 +427,10 @@ main {
   display: block;
   margin-bottom: 5px;
 }
+.form.dark form div label {
+  color: var(--primary-light);
+}
+
 
 .form form div input,
 .form form input[type="submit"],
@@ -378,12 +459,17 @@ main {
   background-color: var(--primary);
   color: #fff;
   transition: var(--transition-d);
+  border: none;
 }
 
 .form form input[type="submit"]:hover {
   background-color: var(--primary-hover);
 }
-
+.form.dark form div input,
+.form.dark form div select,
+.form.dark form div textarea {
+  background-color: var(--primary-light);
+}
 .login-form {}
 
 /* Clubs App*/
@@ -400,6 +486,24 @@ main {
   position: absolute;
   right: 20px;
   top: 5px;
+  color:var(--primary);
+}
+.clubs-sec .container .more-btn i {
+  animation-name: right-left;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  font-size: 14px;
+}
+@keyframes right-left {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(8px);
+  }
+  100% {
+    transform: translate(0px);
+  }
 }
 .clubs-sec .section-header {
   margin-bottom: 50px;
@@ -419,6 +523,9 @@ main {
   position: relative;
   overflow: hidden;
   z-index: 1;
+}
+.clubs-sec.dark .club {
+
 }
 .clubs-sec .club::before {
   content: "";
@@ -458,7 +565,19 @@ main {
 .clubs-sec .club .info .name {
   font-weight: 500;
 }
+.clubs-sec.dark .club .info .description {
+  color: var(--text-secondary-dark);
 
+}
+.clubs-sec.dark .club .info .date {
+  color: var(--text-secondary-dark);
+}
+.clubs-sec.dark .club .info .attendance {
+  color: var(--text-secondary-dark);
+}
+.clubs-sec.dark .club .info .leader {
+  color: var(--text-secondary-dark);
+}
 .clubs-sec .club .info .leader span {
   text-transform: capitalize;
   margin-bottom: 5px;
@@ -491,16 +610,20 @@ main {
 .clubs-sec .club .buttons a:hover {
   background-color: var(--primary-hover);
 }
-.clubs-sec .club .buttons a.modify {
+.clubs-sec .club .buttons a.modify,
+.clubs-sec.dark .club .buttons a.modify {
   background-color: var(--btn-mod);
 }
-.clubs-sec .club .buttons a.delete {
+.clubs-sec .club .buttons a.delete,
+.clubs-sec.dark .club .buttons a.delete {
   background-color: var(--btn-del);
 }
-.clubs-sec .club .buttons a.modify:hover {
+.clubs-sec .club .buttons a.modify:hover
+.clubs-sec.dark .club .buttons a.modify:hover {
   background-color: var(--btn-mod-hover);
 }
-.clubs-sec .club .buttons a.delete:hover {
+.clubs-sec .club .buttons a.delete:hover,
+.clubs-sec.dark .club .buttons a.delete:hover {
   background-color: var(--btn-del-hover);
 }
 /* Club details */
@@ -579,6 +702,7 @@ main {
   font-size: 16px;
   color: #fff;
   cursor: pointer;
+  margin-top: 30px;
 }
 
 .table-style .table-container form input:hover {
@@ -599,7 +723,9 @@ main {
   color: white;
   text-align: left;
 }
-
+.profile-sec.dark .table-style tbody tr {
+  background-color: var(--primary-light);
+}
 .table-style table th,
 .table-style table td {
   padding: 12px 15px;
@@ -610,10 +736,13 @@ main {
   background-color: var(--primary-light);
 }
 
+
 .table-style tbody tr:last-of-type {
   border-bottom: 2px solid var(--primary);
 }
-
+.table-style.dark tbody tr {
+  background-color: var(--primary-light);
+}
 .btns {
   display: flex;
   gap: 8px;
@@ -703,6 +832,10 @@ main {
 }
 .profile-sec .container h3 {
   margin: 0px 0px 25px;
+}
+.profile-sec.dark .container h3 {
+  margin: 0px 0px 25px;
+  color: var(--primary-light);
 }
 .checkbox-wrapper-10 .tgl {
   display: none;
@@ -822,3 +955,68 @@ main {
 .checkbox-wrapper-10 .tgl-flip:checked+.tgl-btn:active:after {
   transform: rotateY(20deg);
 }
+/* confirmation */
+.confirmation .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 50px;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+.confirmation .container form {
+  display: flex;
+  gap: 10px;
+}
+.confirmation .container form input, 
+.confirmation .container form a {
+  padding: 8px 20px;
+  border-radius: 8px;
+  background-color: var(--primary);
+  transition: var(--transition-d);
+  font-size: 16px;
+  color: #fff;
+  border: none;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.confirmation .container form input {
+  background-color: var(--btn-del);
+}
+.confirmation .container form input:hover {
+  background-color: var(--btn-del-hover);
+}
+.confirmation .container form a {
+  background-color: var(--primary);
+}
+.confirmation .container form a:hover {
+  background-color: var(--primary-hover);
+}
+.confirmation.dark .container {
+  background-color: var(--bg-light-dark);
+  box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
+}
+.confirmation.dark .container h2 {
+  color: var(--primary-light);
+}
+.confirmation.dark .container p {
+  color: var(--text-primary-dark);
+}
+/* 
+padding: 8px 20px;
+    border-radius: 8px;
+    background-color: var(--primary);
+    transition: var(--transition-d);
+    font-size: 16px;
+    color: #fff;
+*/
