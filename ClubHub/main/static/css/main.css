@@ -194,7 +194,11 @@ header .container nav .links a {
   color: var(--primary);
   font-weight: 500;
 }
-
+header .container .sec-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 header .container .user {
   height: 72px;
   display: flex;
@@ -247,8 +251,8 @@ body.dark header .container nav button {
     margin-top: 10px;
   }
   header .container nav {
-    /* flex-direction: column; */
-    flex-direction: row;
+    flex-direction: column;
+    /* flex-direction: row; */
     width: 100%;
     justify-content: space-between;
     align-items: center;
@@ -268,9 +272,11 @@ body.dark header .container nav button {
   header .container nav .links a {
     height: 40px;
   }
-
+  header .container .sec-nav {
+    /* margin-top: 20px; */
+  }
   header .container .user {
-    height: 40px;
+    height: 100%;
   }
   header .container .mode {
     align-self: flex-start;
@@ -299,7 +305,7 @@ main section:first-child {
 .home-sec {
   height: calc(100vh - 72px);
   margin: 0;
-  background-image: url("../images/home-img.jpg");
+  background-image: url("../images/home-img1.jpg");
   background-size: cover;
   /* filter: brightness(0.5); */
   display: flex;
@@ -340,6 +346,7 @@ main section:first-child {
   outline: none;
   border: 1px solid var(--border-color);
   caret-color: var(--primary);
+  border: none;
 }
 @media(max-width:767px) {
   .home-sec form input {

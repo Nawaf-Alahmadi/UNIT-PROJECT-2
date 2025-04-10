@@ -42,6 +42,8 @@
             <a href="{% url 'users:logout_view'%}">Logout</a>
             {% endif %}
           </div>
+        </nav>
+        <div class="sec-nav">
           <div class="mode">
             <a href="{% url 'main:mode_view' 'light' %}?next={{request.path}}"><i class="fa-solid fa-sun"></i></a>
             <a href="{% url 'main:mode_view' 'dark' %}?next={{request.path}}"><i class="fa-solid fa-moon"></i></a>
@@ -52,7 +54,7 @@
             <div class="name">{{user.username}}</div>
           </div>
           {% endif %}
-        </nav>
+        </div>
       </div>
     </header>
     <main>
