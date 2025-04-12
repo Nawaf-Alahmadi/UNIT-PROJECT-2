@@ -298,24 +298,20 @@ main {
   position: relative;
   min-height: calc(100vh - 72px);
 }
-main section:first-child {
-  /* margin-top: 0; */
-}
 /* Home Page */
 .home-sec {
   height: calc(100vh - 72px);
   margin: 0;
   background-image: url("../images/home-img1.jpg");
   background-size: cover;
-  /* filter: brightness(0.5); */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.home-sec .introduction {
-  /* backdrop-filter: blur(5px); */
-  /* border-radius: 10px; */
+.home-sec.dark {
+  background-image: url("../images/home-img1-dark.jpg");
+
 }
 .home-sec h1 {
   font-size: 28px;
@@ -351,6 +347,12 @@ main section:first-child {
 @media(max-width:767px) {
   .home-sec form input {
     width: 100%;
+  }
+  .home-sec h1 {
+    font-size: 20px;
+  }
+  .home-sec p {
+    font-size: 14px;
   }
 }
 /* Contact */
@@ -523,7 +525,7 @@ main section:first-child {
 }
 
 .clubs-sec .club {
-  padding: 16px;
+  /* padding: 16px; */
   border-radius: 12px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
   background-color: #fff;
@@ -556,19 +558,29 @@ main section:first-child {
 }
 
 .clubs-sec .club img {
+  width: 100%;
   max-width: 100%;
   height: 200px;
 
 }
 
 .clubs-sec .club .info {
-  padding: 30px 0 20px;
+  /* padding: 30px 0 20px; */
+  padding: 16px;
+
 }
 .clubs-sec .club .info p{
   color: var(--text-primary);
   line-height: 1.5;
 }
 
+.clubs-sec .club .info .name {
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.clubs-sec .club .info .description {
+  margin-bottom: 15px;
+}
 .clubs-sec .club .info .name {
   font-weight: 500;
 }
@@ -603,6 +615,8 @@ main section:first-child {
 .clubs-sec .club .buttons {
   display: flex;
   gap: 10px;
+  padding: 16px;
+
 }
 
 .clubs-sec .club .buttons a {
@@ -648,7 +662,8 @@ main section:first-child {
 }
 
 .club-details-sec .all-info .club img {
-  width: 300px;
+  width: 350px;
+  border-radius: 12px;
 }
 /* Dark */
 .clubs-sec.dark .club {
@@ -678,7 +693,9 @@ main section:first-child {
 .clubs-sec.dark .club .info .name {
   color: var(--text-primary-dark); 
 }
-
+.clubs-sec .club .info .leader {
+  margin-top: 10px;
+}
 .clubs-sec.dark .club .info .leader span {
   color: var(--text-secondary-dark); 
 }
@@ -698,7 +715,7 @@ main section:first-child {
   width: 100%;
 }
 
-.table-style .table-container form input {
+.table-style form input {
   width: 100%;
   padding: 10px;
   border-radius: 8px;

@@ -106,7 +106,7 @@ def club_details_view(request:HttpRequest, club_id):
   club_details = Club.objects.get(pk= club_id)
   members_of_club = User.objects.filter(memberships__club=club_details, memberships__status="APPROVED") # check it again
   if request.user.is_authenticated:
-    if Membership.objects.filter(user= request.user , club= club_details).exists() or club_details.leader == request.user:
+    if Membership.objects.filter(user= request.user , club= club_details, status= "APPROVED").exists() or club_details.leader == request.user:
       private_events = Event.objects.filter(
           visibility="PRIVATE",
           club=club_details

@@ -14,7 +14,7 @@ from django.conf import settings
 
 def home_page_view(request: HttpRequest):
   clubs = Club.objects.annotate(approved_member_count=Count('memberships', filter=Q(memberships__status= "APPROVED"))).order_by('-approved_member_count')[0:3]
-  events = Event.objects.annotate(attendance_count= Count('rsvps', filter=Q(rsvps__status= 'ATTENDING'))).order_by('-attendance_count')[0:3]
+  events = Event.objects.annotate(attendance_count= Count('rsvps', filter=Q(rsvps__status= 'ATTENDING'))).filter(visibility="GLOBAL").order_by('-attendance_count')[0:3]
   return render(request, "main/index.html", {'clubs':clubs, 'events':events})
 
 def mode_view(request: HttpRequest, mode):

@@ -5,7 +5,7 @@ Register
 {% endblock %}
 
 {% block content %}
-<section class="form register-form">
+<section class="form register-form {% if request.COOKIES.mode == 'dark' %} dark {% endif %}">
   <div class="container">
     <h2 class="section-header">Register</h2>
     <form action="{% url 'users:register_page_view' %}" method="post">
@@ -28,7 +28,7 @@ Register
       </div>
       <div>
         <label for="">Password</label>
-        <input type="password" name="password" placeholder="Enter your password" required>
+        <input type="password" name="password" placeholder="Enter your password" required minlength="8">
       </div>
       <input type="submit" value="Register">
     </form>

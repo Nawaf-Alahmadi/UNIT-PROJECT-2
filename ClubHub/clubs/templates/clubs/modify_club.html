@@ -3,7 +3,7 @@
 {% block title %} Clubs {% endblock %}
 
 {% block content %}
-<section class="form modify-form">
+<section class="form modify-form {% if request.COOKIES.mode == 'dark' %} dark {% endif %}">
   <div class="container">
     <h2 class="section-header">Modify Club</h2>
     <form action="{% url 'clubs:modify_club_view' club_details.id %}" method="post" enctype="multipart/form-data">
