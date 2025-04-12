@@ -678,7 +678,12 @@ main {
 .clubs-sec .club .buttons a:hover {
   background-color: var(--primary-hover);
 }
-
+.modify {
+  background-color: var(--btn-mod) !important;
+}
+.modify:hover {
+  background-color: var(--btn-mod-hover) !important;
+}
 .clubs-sec .club .buttons a.modify,
 .clubs-sec.dark .club .buttons a.modify {
   background-color: var(--btn-mod);
@@ -689,7 +694,8 @@ main {
   background-color: var(--btn-del);
 }
 
-.clubs-sec .club .buttons a.modify:hover .clubs-sec.dark .club .buttons a.modify:hover {
+.clubs-sec .club .buttons a.modify:hover,
+.clubs-sec.dark .club .buttons a.modify:hover {
   background-color: var(--btn-mod-hover);
 }
 

@@ -53,13 +53,13 @@
         </div>
       </section>
       {% if private_events %}
-      <section class="sec events-sec">
+      <section class="sec events-sec clubs-sec">
         <div class="container">
           <h2 class="section-header">Events</h2>
           
           <div class="events">
             {% for private_event in private_events %}
-            <div class="event">
+            <div class="event club">
               <div class="img">
                 <img src="{{private_event.image.url}}" alt="">
               </div>
@@ -74,11 +74,6 @@
                 <a href="{% url 'events:event_attend_interested_view' private_event.id request.user.id  'ATTENDING' %}">Attending</a>
                 <a href="{% url 'events:event_attend_interested_view' private_event.id request.user.id  'INTERESTED' %}">Interested</a>
               </div>
-              <!-- {{private_event.title}}
-              <br>
-              {{private_event.description}}
-              <br>
-              {{private_event.date}} -->
             </div>
             {% endfor %}
           </div>
