@@ -1,5 +1,5 @@
 {% extends  'main/base.html' %}
-
+{% load static %}
 {% block title %}
 Home
 {% endblock %}
@@ -9,10 +9,10 @@ Home
       <div class="introduction">
         <h1>Welcome to ClubHub – Your Gateway to Campus Life</h1>
         <p>Discover clubs, join events, and connect with your university community.</p>
+        <form action="{% url 'main:search' %}" method="get">
+          <input type="search" name="search" placeholder="Search for clubs or events">
+        </form>
       </div>
-      <form action="{% url 'main:search' %}" method="get">
-        <input type="search" name="search" placeholder="Search for clubs or events">
-      </form>
     </div>
   </section>
   <section class="sec clubs-sec {% if request.COOKIES.mode == 'dark' %} dark {% endif %}">
