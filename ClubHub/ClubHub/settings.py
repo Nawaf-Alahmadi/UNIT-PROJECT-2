@@ -30,6 +30,8 @@ SECRET_KEY = 'django-insecure-#do_$l49n@2jf!u+05&zi!%i)+070+$z$ic08&5_-fhf!@ako$
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["https://clubhub.up.railway.app/", "http://127.0.0.1"]
+
 
 
 # Application definition
